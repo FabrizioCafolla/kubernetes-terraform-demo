@@ -1,0 +1,42 @@
+name: Code Quality
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/test.yml'
+      - '.pre-commit-config.yaml'
+      - 'app/**/infrstructure/**'
+      - 'app/**/Dockerfile'
+      - 'infrastructure/**'
+    types: [opened, synchronize]
+
+permissions:
+  contents: read
+
+jobs:
+  code-quality:
+    name: Code Quality
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.9
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.9
+
+      - name: Setup and run pre-commit
+        run: |
+          chmod +x localstack/setup.sh
+
+          ./localstack/setup.sh
+
+          source .venv/bin/activate
+
+          pre-commit run --all-files
