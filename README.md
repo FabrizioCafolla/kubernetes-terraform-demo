@@ -1,8 +1,6 @@
 # API microservice with K8S and Terraform
 
-## Why?
-
-### Objectives
+### Objectives
 
 The goal of the project is to create a local k8s infrastructure and delpoy microservices using Terraform.
 
@@ -25,7 +23,7 @@ The goal of the project is to create a local k8s infrastructure and delpoy micro
 - [x] Dockerize microservices
 - [x] Enable/Disable deploy microservice with true/false flag
 
-Constraints:
+**Constraints**
 1. Create a monorepo that include infrustructure and microservices
 2. Manage localstack with one-click
 3. Save terraform state locally
