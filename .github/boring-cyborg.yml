@@ -1,0 +1,29 @@
+labelPRBasedOnFilePath:
+  ci:
+    - .github/*
+    - .github/**/*
+
+  dependencies:
+    - requirements.txt
+    - .pre-commit-config.yaml
+
+  infrastructure:
+    - infrastructure/*
+    - infrastructure/**/*
+    - app/**/infrastructure/*
+    - app/**/infrastructure/**/*
+
+  api:
+    - app/api/*
+    - app/api/**/*
+
+firstPRWelcomeComment: >
+  Thanks for opening this pull request! Please check out our contributing guidelines.
+
+verifyTitles:
+  titleRegexp: ^(feat|feat!|fix|fix!|docs|refactor|refactor!|test|chore|build|ci)\((ci|docs|deps|deps-dev|api|infrastructure)\):.*
+  alwaysUsePrTitle: true
+  validateEitherPrOrSingleCommitTitle: true
+  statusTitle: "Title Validator"
+  successMessage: "Validation successful!"
+  failureMessage: "Wrong ${type} title: ${title}"
